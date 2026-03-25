@@ -3,11 +3,14 @@ from typing import Dict, List, Optional
 import json
 import os
 
+from dotenv import load_dotenv
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime
 from sqlalchemy.orm import declarative_base, sessionmaker
+
+load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
@@ -19,6 +22,7 @@ if DATABASE_URL.startswith("postgres://"):
 
 engine = create_engine(
     DATABASE_URL,
+    connect_args={"sslmode": "require"},
     pool_pre_ping=True,
 )
 
