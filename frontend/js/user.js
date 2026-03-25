@@ -1,4 +1,12 @@
-const API_BASE = "http://127.0.0.1:8000";
+const isLocalhost =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1";
+
+const API_BASE = isLocalhost
+  ? "http://127.0.0.1:8000"
+  : "https://mylivechat-0vr6.onrender.com";
+
+const WS_BASE = API_BASE.replace(/^http/, "ws");
 
 const chatLauncher = document.getElementById("chatLauncher");
 const chatPanel = document.getElementById("chatPanel");
@@ -185,7 +193,7 @@ function connectUserWebSocket() {
   }
 
   const protocol = window.location.protocol === "https:" ? "wss" : "ws";
-  ws = new WebSocket(`${protocol}://127.0.0.1:8000/ws/user/${conversationId}`);
+  ws = new WebSocket(`${WS_BASE}/ws/user/${conversationId}`);
 
   ws.onopen = () => {
     console.log("User socket connected");

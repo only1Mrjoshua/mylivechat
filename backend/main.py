@@ -54,7 +54,7 @@ app = FastAPI(title="Live Support Chat API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://mylivechat.vercel.app", "http://127.0.0.1:5501"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -1,4 +1,12 @@
-const API_BASE = "http://127.0.0.1:8000";
+const isLocalhost =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1";
+
+const API_BASE = isLocalhost
+  ? "http://127.0.0.1:8000"
+  : "https://mylivechat-0vr6.onrender.com";
+
+const WS_BASE = API_BASE.replace(/^http/, "ws");
 
 const conversationList = document.getElementById("conversationList");
 const selectedConversationInfo = document.getElementById("selectedConversationInfo");
@@ -381,7 +389,7 @@ function connectAdminWebSocket() {
     ws.close();
   }
 
-  ws = new WebSocket(`${protocol}://127.0.0.1:8000/ws/admin`);
+  ws = new WebSocket(`${WS_BASE}/ws/admin`);
 
   ws.onopen = () => {
     console.log("Admin WebSocket connected");
