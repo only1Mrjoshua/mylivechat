@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Live Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <button
+      id="chatLauncher"
+      class="chat-launcher"
+      aria-label="Open support chat"
+    >
+      💬
+    </button>
+
+    <div id="chatPanel" class="chat-panel hidden">
+      <div class="chat-header">
+        <div>
+          <h2 class="chat-title">Contact Support</h2>
+          <p class="chat-subtitle">
+            Chat with support in real time. If no agent is online, the assistant
+            will reply first.
+          </p>
+        </div>
+        <button id="chatClose" class="chat-close" aria-label="Close chat">
+          ✕
+        </button>
+      </div>
+
+      <div id="userOnboarding" class="user-onboarding">
+        <div class="form-wrap">
+          <label class="field">
+            <span class="label">Your name</span>
+            <input
+              id="userName"
+              class="input"
+              placeholder="Enter your full name"
+            />
+          </label>
+
+          <label class="field">
+            <span class="label">Email</span>
+            <input
+              id="userEmail"
+              class="input"
+              type="email"
+              placeholder="Enter your email"
+            />
+          </label>
+
+          <label class="field">
+            <span class="label">Message</span>
+            <textarea
+              id="firstMessage"
+              class="textarea"
+              rows="5"
+              placeholder="Tell us what you need help with"
+            ></textarea>
+          </label>
+
+          <button id="startChatBtn" class="primary-btn" style="width: 100%">
+            Start Secure Chat
+          </button>
+
+          <div class="helper-card">
+            <p>
+              For faster help, include any amount, date, reference number,
+              screenshot details, or account issue description.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="chatBody" class="chat-body hidden">
+        <div id="userMessages" class="messages"></div>
+        <form id="userComposer" class="composer">
+          <textarea
+            id="userMessageInput"
+            class="textarea"
+            rows="2"
+            placeholder="Write your message..."
+          ></textarea>
+          <button class="primary-btn" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="./js/user.js"></script>
+  </body>
+</html>

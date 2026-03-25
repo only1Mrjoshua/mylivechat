@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Support Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="admin-page">
+      <div class="admin-header">
+        <div class="admin-title">
+          <h1>Support Dashboard</h1>
+          <p>Monitor conversations and reply to users in real time.</p>
+        </div>
+        <div class="actions">
+          <input
+            id="adminName"
+            class="input"
+            style="width: 240px"
+            value="Support Agent"
+          />
+          <button id="refreshBtn" class="secondary-btn">Refresh</button>
+        </div>
+      </div>
+
+      <div class="admin-shell">
+        <aside class="sidebar">
+          <div class="sidebar-head">
+            <h3 style="margin: 0">Conversations</h3>
+            <p style="margin: 8px 0 0; color: var(--text-soft)">
+              Open and recent customer chats
+            </p>
+          </div>
+          <div id="conversationList" class="conversation-list"></div>
+        </aside>
+
+        <section class="chat-area">
+          <div class="chat-area-head">
+            <div id="selectedConversationInfo">
+              <h3 style="margin: 0">Select a conversation</h3>
+              <p style="margin: 8px 0 0; color: var(--text-soft)">
+                Choose a user from the left to start replying.
+              </p>
+            </div>
+          </div>
+
+          <div id="adminMessages" class="messages">
+            <div class="empty-state">No conversation selected yet.</div>
+          </div>
+
+          <form id="adminComposer" class="composer">
+            <textarea
+              id="adminMessageInput"
+              class="textarea"
+              rows="2"
+              placeholder="Type a reply..."
+            ></textarea>
+            <button class="primary-btn" type="submit">Send Reply</button>
+            <button id="closeCaseBtn" type="button" class="danger-btn">
+              Close Case
+            </button>
+          </form>
+        </section>
+      </div>
+    </div>
+
+    <script src="./js/admin.js"></script>
+  </body>
+</html>
