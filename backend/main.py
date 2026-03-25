@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Dict, List, Optional
 import json
-from pathlib import Path
+import os
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,16 +9,19 @@ from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-BASE_DIR = Path(__file__).resolve().parent
-DATA_DIR = BASE_DIR.parent / "data"
-DATA_DIR.mkdir(parents=True, exist_ok=True)
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-DATABASE_URL = f"sqlite:///{(DATA_DIR / 'chat.db').as_posix()}"
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL is not set")
+
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False}
+    pool_pre_ping=True,
 )
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
